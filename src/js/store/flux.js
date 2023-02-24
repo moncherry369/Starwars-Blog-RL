@@ -1,28 +1,35 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			characters:[],
+			planets:[],
 		},
+
+
+		
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
 			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+					fetch("https://swapi.dev/api/people")
+					.then((res) => res.json())
+					.then((data) => {
+						setStore({characters:data.results})
+						console.log("yo mama")
+					})
+					// use catch always to catch errors!!//
+					.catch((error) =>{console.log(error)})
+
+					fetch("https://swapi.dev/api/planets")
+					.then((res) => res.json())
+					.then((data) => {
+						setStore({planets:data.results})
+						console.log("yo mama")
+					})
+					// use catch always to catch errors!!//
+					.catch((error) =>{console.log(error)})
 			},
 			changeColor: (index, color) => {
 				//get the store
