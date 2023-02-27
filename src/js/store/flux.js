@@ -13,6 +13,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				getActions().changeColor(0, "green");
 			},
 			loadSomeData: () => {
+
 					fetch("https://swapi.dev/api/people")
 					.then((res) => res.json())
 					.then((data) => {
@@ -22,15 +23,31 @@ const getState = ({ getStore, getActions, setStore }) => {
 					// use catch always to catch errors!!//
 					.catch((error) =>{console.log(error)})
 
+
 					fetch("https://swapi.dev/api/planets")
 					.then((res) => res.json())
 					.then((data) => {
 						setStore({planets:data.results})
 						console.log("yo mama")
 					})
-					// use catch always to catch errors!!//
 					.catch((error) =>{console.log(error)})
 			},
+
+			getplanet:(id) => {
+				const planets = getStore().planets
+
+				return(
+					planets[id]
+				)
+			},
+			getcharacter:(id) => {
+				const characters = getStore().characters
+
+				return(
+					characters[id]
+				)
+			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

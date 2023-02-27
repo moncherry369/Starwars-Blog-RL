@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = (props) => {
     let characterDeetz = props.type == "character" ? <div>
@@ -36,7 +37,9 @@ let planetDeetz = props.type == "planet" ? <div>
             {props.type =="character"?characterDeetz:""}
             {props.type =="planet"?planetDeetz:""}
             <div className="bottom-card">
-                <button>Learn More!</button>
+                <Link to = {"/about/" + props.type + "/" + props.id}>
+                <span>Learn More!</span>
+                </Link>
                 <button>lol</button>
             </div>
         </div>
