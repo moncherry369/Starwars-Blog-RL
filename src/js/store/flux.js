@@ -3,8 +3,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 		store: {
 			characters:[],
 			planets:[],
+			starships:[],
+			favorites:[],
 		},
-
+// map over the array and deleting !! look at mapping of homepage do inside drop down map names !!
 
 		
 		actions: {
@@ -18,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((res) => res.json())
 					.then((data) => {
 						setStore({characters:data.results})
-						console.log("yo mama")
+						console.log("Characters")
 					})
 					// use catch always to catch errors!!//
 					.catch((error) =>{console.log(error)})
@@ -28,24 +30,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((res) => res.json())
 					.then((data) => {
 						setStore({planets:data.results})
-						console.log("yo mama")
+						console.log("Planets")
+					})
+					.catch((error) =>{console.log(error)})
+					
+					
+					fetch("https://swapi.dev/api/starships")
+					.then((res) => res.json())
+					.then((data) => {
+						setStore({starships:data.results})
+						console.log("Starships")
 					})
 					.catch((error) =>{console.log(error)})
 			},
 
-			getplanet:(id) => {
-				const planets = getStore().planets
-
-				return(
-					planets[id]
-				)
-			},
+		
 			getcharacter:(id) => {
 				const characters = getStore().characters
 
 				return(
 					characters[id]
 				)
+			},
+
+			getPlanet:(id) => {
+				const planets = getStore().planets
+
+				return(
+					planets[id]
+				)
+			},
+			
+			getStarship:(id) => {
+				const starships = getStore().starships
+
+				return(
+					starships[id]
+				)
+			},
+
+			addFavorite:(name) => {
+				const favorite = getStore().favorites
+				favorites.push(name)
+				setStore({favorites:favorites})
 			},
 
 			changeColor: (index, color) => {

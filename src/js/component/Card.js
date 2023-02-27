@@ -2,6 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Card = (props) => {
+    let name = props.item.name
+    // if(props.type == "character"){
+    //     name = props.item.name
+    // }
+
     let characterDeetz = props.type == "character" ? <div>
         <img src={`https://starwars-visualguide.com/assets/img/characters/${props.id + 1}.jpg`}
                 onError={(e) => {
@@ -17,32 +22,51 @@ const Card = (props) => {
         </div>
     </div> : ""
 
-let planetDeetz = props.type == "planet" ? <div>
-        <img src={`https://starwars-visualguide.com/assets/img/planets/${props.id + 1}.jpg`}
+    let planetDeetz = props.type == "planet" ? 
+        <div>
+            <img src={`https://starwars-visualguide.com/assets/img/planets/${props.id + 1}.jpg`}
                 onError={(e) => {
                     e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg'
                 }}
                 className="card-img-top"
                 style={{maxHeight: "300px", objectFit: "cover"}}
                 alt="Images of Star Wars Planets"
-        />
-        <div className="card-body">
+            />
+         <div className="card-body">
             <h5 className="card-title">{props.item.name}</h5>
             <h6>Terrain: {props.item.terrain}</h6>
         </div>
-    </div> : ""
+        </div> : ""
+    let starshipDeetz = props.type == "starship" ? 
+        <div>
+            <img src={`https://starwars-visualguide.com/assets/img/starships/${props.id + 1}.jpg`}
+                onError={(e) => {
+                    e.target.src = 'https://starwars-visualguide.com/assets/img/placeholder.jpg'
+                }}
+                className="card-img-top"
+                style={{maxHeight: "300px", objectFit: "cover"}}
+                alt="Images of Star Wars Starships"
+            />
+         <div className="card-body">
+            <h5 className="card-title">{props.item.name}</h5>
+            <h6>Manufacturer: {props.item.manufacturer}</h6>
+        </div>
+        </div> : ""
 
-    return (
-        <div className="card" style={{width:"18rem"}}>
+        return (
+            <div className="card" style={{width:"18rem"}}>
             {props.type =="character"?characterDeetz:""}
             {props.type =="planet"?planetDeetz:""}
-            <div className="bottom-card">
+            {props.type =="starship"?starshipDeetz:""}
+                <div className="bottom-card">
                 <Link to = {"/about/" + props.type + "/" + props.id}>
                 <span>Learn More!</span>
                 </Link>
-                <button>lol</button>
+                <button onClick={() => actions.addFavorite(name)}>Favorite!</button>
+                </div>
             </div>
-        </div>
     )
+
 } 
+
 export default Card;
