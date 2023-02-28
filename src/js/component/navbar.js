@@ -1,7 +1,12 @@
-import React from "react";
+import React, {useContext} from "react";
 import { Link } from "react-router-dom";
-2
+import { Context } from "../store/appContext";
+
+
 export const Navbar = () => {
+	const {store, actions} = useContext(Context)
+	console.log(store.favorites)
+
 	return (
 		<nav className="navbar navbar-light bg-light mb-3">
 			<Link to="/">
@@ -11,20 +16,21 @@ export const Navbar = () => {
 			</Link>
 			
 
-<div className="dropdown">
-  <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-    Dropdown button
-  </button>
-  <ul className="dropdown-menu">
-    <li><a className="dropdown-item" href="#">Action</a></li>
-    <li><a className="dropdown-item" href="#">Another action</a></li>
-    <li><a className="dropdown-item" href="#">Something else here</a></li>
-    </ul>
-</div>
+			<div className="dropdown">
+					<button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Favorites
+					</button>
+					<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						{store.favorites.map((fav, i) => {
 
-			
+							return <a className="dropdown-item" key={i} href="#"> {fav} <i onClick={()=>actions.deleteFavorite(i)} className="fas fa-trash"></i></a>
+
+						})}
+						
+					</div>
+				</div>			
 		
 		</nav>
 	);
 };
-export default Navbar();
+export default Navbar;

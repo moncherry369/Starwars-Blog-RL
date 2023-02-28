@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { Context } from "../store/appContext";
 
 const Card = (props) => {
     let name = props.item.name
     // if(props.type == "character"){
     //     name = props.item.name
     // }
+    const {store, actions} = useContext(Context)
 
     let characterDeetz = props.type == "character" ? <div>
         <img src={`https://starwars-visualguide.com/assets/img/characters/${props.id + 1}.jpg`}

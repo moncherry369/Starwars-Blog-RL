@@ -70,10 +70,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			addFavorite:(name) => {
-				const favorite = getStore().favorites
+				const favorites = getStore().favorites
 				favorites.push(name)
 				setStore({favorites:favorites})
 			},
+
+			deleteFavorite:(idx) => {
+				const favorites = getStore().favorites
+				let filtered = favorites.filter((f,i)=> i !== idx)
+				setStore({favorites:filtered})
+			},
+
+
+
+			// WOWWWW THIS IS ANNOYING --v
 
 			changeColor: (index, color) => {
 				//get the store
