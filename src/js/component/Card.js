@@ -61,10 +61,10 @@ const Card = (props) => {
             {props.type =="planet"?planetDeetz:""}
             {props.type =="starship"?starshipDeetz:""}
                 <div className="bottom-card">
-                <Link to = {"/about/" + props.type + "/" + props.id}>
-                <span>Learn More!</span>
+                <Link to = {"/about/" + props.type + "/" + props.id} id="find-out">
+                <span>Find out!</span>
                 </Link>
-                <button onClick={() => actions.addFavorite(name)}>Favorite!</button>
+                <div className="heart-btn" ><button id="favorite-btn" onClick={() => actions.addFavorite(name)}>♥</button></div>
                 </div>
             </div>
     )

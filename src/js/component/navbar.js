@@ -8,7 +8,7 @@ export const Navbar = () => {
 	console.log(store.favorites)
 
 	return (
-		<nav className="navbar navbar-light bg-light mb-3">
+		<nav className="navbar mb-3">
 			<Link to="/">
 				<div className="nav-logo">
 				<img src="https://logos-download.com/wp-content/uploads/2016/09/Star_Wars_logo-1.png" style={{width: "100px", height: "35px", margin:"15px"}}/>
@@ -17,13 +17,13 @@ export const Navbar = () => {
 			
 
 			<div className="dropdown">
-					<button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+					<button className="btn dropdown-toggle" type="button" id="favoritesBTN" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 						Favorites
 					</button>
 					<div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						{store.favorites.map((fav, i) => {
 
-							return <a className="dropdown-item" key={i} href="#"> {fav} <i onClick={()=>actions.deleteFavorite(i)} className="fas fa-trash"></i></a>
+							return <a className="dropdown-item" key={i} href="#"> {fav} <i onClick={()=>actions.deleteFavorite(i)} className="fas fa-trash" id="delete"></i></a>
 
 						})}
 						
